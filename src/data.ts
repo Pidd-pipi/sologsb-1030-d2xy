@@ -1,13 +1,13 @@
 import type { ChecklistItem, ChecklistProject, FlightStage, WorkspaceState } from './types';
 
 const stages: FlightStage[] = [
-  { id: 'stage-preflight', name: '飞行前检查', order: 0, description: '驾驶舱准备与飞机状态核对。' },
-  { id: 'stage-start', name: '发动机启动', order: 1, description: '启动前风险确认与发动机监控。' },
-  { id: 'stage-taxi', name: '滑行', order: 2, description: '滑行许可、航向和障碍物监控。' },
-  { id: 'stage-takeoff', name: '起飞', order: 3, description: '起飞构型与跑道状态确认。' },
-  { id: 'stage-climb', name: '爬升', order: 4, description: '爬升推力、航向和增压确认。' },
-  { id: 'stage-approach', name: '进近', order: 5, description: '进近简令、最低高度和复飞准备。' },
-  { id: 'stage-landing', name: '着陆', order: 6, description: '着陆构型、风况和跑道核对。' }
+  { id: 'stage-preflight', name: '飞行前检查', order: 0, description: '驾驶舱准备与飞机状态核对。', version: 1 },
+  { id: 'stage-start', name: '发动机启动', order: 1, description: '启动前风险确认与发动机监控。', version: 1 },
+  { id: 'stage-taxi', name: '滑行', order: 2, description: '滑行许可、航向和障碍物监控。', version: 1 },
+  { id: 'stage-takeoff', name: '起飞', order: 3, description: '起飞构型与跑道状态确认。', version: 1 },
+  { id: 'stage-climb', name: '爬升', order: 4, description: '爬升推力、航向和增压确认。', version: 1 },
+  { id: 'stage-approach', name: '进近', order: 5, description: '进近简令、最低高度和复飞准备。', version: 1 },
+  { id: 'stage-landing', name: '着陆', order: 6, description: '着陆构型、风况和跑道核对。', version: 1 }
 ];
 
 const item = (
@@ -28,7 +28,8 @@ const item = (
   critical,
   preconditionIds,
   abnormalProcedure,
-  updatedAt: '2026-09-25T00:00:00.000Z'
+  updatedAt: '2026-09-25T00:00:00.000Z',
+  version: 1
 });
 
 const items: ChecklistItem[] = [
@@ -59,6 +60,9 @@ const project: ChecklistProject = {
   reviewNote: '',
   stages: structuredClone(stages),
   items: structuredClone(items),
+  contentVersion: 1,
+  orderCheckPending: false,
+  conflicts: [],
   revisions: [
     {
       id: 'revision-2',

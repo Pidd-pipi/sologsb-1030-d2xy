@@ -2,6 +2,12 @@ import type { ChecklistItem, ChecklistProject, ChecklistRevision, DiffEntry, Ver
 
 const itemLabel = (item: ChecklistItem) => `${item.challenge || '未命名'} → ${item.response || '未填写'}`;
 
+/** version/updatedAt 是并发控制元数据，不属于业务内容差异。 */
+const stripItemMeta = (item: ChecklistItem) => {
+  const { updatedAt: _updatedAt, version: _version, ...rest } = item;
+  return rest;
+};
+
 export function buildVersionOptions(project: ChecklistProject): VersionOption[] {
   return [
     { id: 'current', label: `当前 r${project.revision} · ${statusLabel(project.status)}` },
@@ -26,7 +32,7 @@ export function diffVersions(project: ChecklistProject, leftId: string, rightId:
       entries.push({ type: 'added', key: id, stage: stageName(after), before: '—', after: itemLabel(after) });
     } else if (before && !after) {
       entries.push({ type: 'removed', key: id, stage: stageName(before), before: itemLabel(before), after: '—' });
-    } else if (before && after && JSON.stringify({ ...before, updatedAt: '' }) !== JSON.stringify({ ...after, updatedAt: '' })) {
+    } else if (before && after && JSON.stringify(stripItemMeta(before)) !== JSON.stringify(stripItemMeta(after))) {
       entries.push({
         type: 'changed',
         key: id,
