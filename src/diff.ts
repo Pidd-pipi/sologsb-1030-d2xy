@@ -26,7 +26,7 @@ export function diffVersions(project: ChecklistProject, leftId: string, rightId:
       entries.push({ type: 'added', key: id, stage: stageName(after), before: '—', after: itemLabel(after) });
     } else if (before && !after) {
       entries.push({ type: 'removed', key: id, stage: stageName(before), before: itemLabel(before), after: '—' });
-    } else if (before && after && JSON.stringify({ ...before, updatedAt: '' }) !== JSON.stringify({ ...after, updatedAt: '' })) {
+    } else if (before && after && JSON.stringify({ ...before, updatedAt: '', version: 0 }) !== JSON.stringify({ ...after, updatedAt: '', version: 0 })) {
       entries.push({
         type: 'changed',
         key: id,

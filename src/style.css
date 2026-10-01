@@ -117,6 +117,17 @@ kbd { border: 1px solid var(--gray-a7); border-bottom-width: 2px; border-radius:
 .preview-dialog { max-height: 88vh; }
 .dialog-scroll { max-height: 65vh; margin-top: 16px; overflow: auto; border-radius: 12px; background: var(--gray-3); padding: 10px; }
 .print-sheet.compact { box-shadow: none; }
+.conflict-list { display: grid; gap: 12px; margin-top: 14px; max-height: 62vh; overflow: auto; padding: 2px; }
+.conflict-card { padding: 14px; }
+.conflict-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.conflict-side { border: 1px solid var(--gray-a5); border-radius: 10px; padding: 10px; overflow: hidden; }
+.conflict-remote { background: color-mix(in srgb, var(--blue-3) 45%, var(--color-panel)); }
+.conflict-local { background: color-mix(in srgb, var(--amber-3) 45%, var(--color-panel)); }
+.conflict-field { display: grid; grid-template-columns: 74px 1fr; gap: 8px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--gray-a4); font-size: 12px; }
+.conflict-field:last-child { border-bottom: 0; }
+.conflict-field span { color: var(--gray-10); }
+.conflict-field pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 11px/1.5 ui-monospace, monospace; }
+.conflict-field.changed span { color: var(--amber-11); font-weight: 700; }
 .help-list { display: grid; gap: 12px; margin-top: 18px; }
 .help-list div { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 12px; font-size: 12px; }
 .help-list kbd { justify-self: start; }
